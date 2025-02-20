@@ -11,3 +11,10 @@ function getComputerChoice(){
     
 }
 
+function getHumamChoice(){
+
+    let choice = parseInt(prompt("Please choose one: 1 - Rock | 2 - Paper | 3 - Scissors"));
+    return choice;
+
+}
+
