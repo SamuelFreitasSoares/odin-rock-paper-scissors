@@ -50,3 +50,21 @@ function playRound(humamChoice,computerChoice){
     }
 
 }
+
+function playGame(){
+    for (let i = 0; i < 5; i++)
+    {
+        const humamChoice = getHumamChoice();
+        const computerChoice = getComputerChoice();
+        playRound(humamChoice, computerChoice);
+    }
+
+    if (humamScore > computerScore){
+        return "CONGRATULATIONS!!!";
+    }
+    else{
+        return "Better luck next time :(";
+    }
+}
+
+console.log(playGame());
