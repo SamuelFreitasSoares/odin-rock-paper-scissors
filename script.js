@@ -22,36 +22,65 @@ function playRound(humamChoice,computerChoice){
         humamChoice === "Paper" && computerChoice === "Rock" ||
         humamChoice === "Scissors" && computerChoice === "Paper"
     ){
+        humamScore++;
         return `You Win!! ${humamChoice} beats ${computerChoice}`;
     } else {
+        computerScore++;
         return `You Lost!! ${computerChoice} beats ${humamChoice}`;
     }
 
 }
 
 
-let loaded = document.addEventListener("DOMContentLoaded", (event) =>{
+let loaded = document.addEventListener("DOMContentLoaded", () =>{
 
-    let btn = document.getElementById('buttons');
-let computerChoice = getComputerChoice();
+const container = document.getElementById("display");
+const btn = document.getElementById('buttons');
+ 
+    btn.addEventListener('click', (event) => {
+        let botao = event.target;
+        let computerChoice = getComputerChoice();
+        switch(botao.id){
+            case "rock":
+                const playRock = document.createElement('h4');
+                playRock.classList.add("rock-h1");
+                playRock.textContent = playRound("Rock",computerChoice);
+                container.appendChild(playRock);
+                break;
+            case "paper":
+                const playPaper = document.createElement('h4');
+                playPaper.classList.add("paper-h1");
+                playPaper.textContent = playRound("Paper",computerChoice);
+                container.appendChild(playPaper);            
+                break;
+            case "scissors":
+                const playScissor = document.createElement('h4');
+                playScissor.classList.add("scissors-h1");
+                playScissor.textContent = playRound("Scissors",computerChoice);
+                container.appendChild(playScissor);
+                break;
+            }
+            
+        if(humamScore === 5){
+            const winMessage = document.createElement('h1');
+            winMessage.classList.add('message');
+            winMessage.textContent = `You Won!! final score: ${humamScore} vs ${computerScore}`;
+            computerScore=0;
+            humamScore=0;
+            container.appendChild(winMessage);
+        } else if (computerScore === 5){
+            const lostMessage = document.createElement('h1');
+            lostMessage.classList.add("message");
+            lostMessage.textContent = `You Lost 😔  final score: ${humamScore} vs ${computerScore})`;
+            computerScore=0;
+            humamScore=0;
+            container.appendChild(lostMessage);
+           
+        }
 
-btn.addEventListener('click', (event) => {
-    let botao = event.target;
-    
-    switch(botao.id){
-        case "rock":
-            console.log(playRound("Rock",computerChoice));
-            break;
-        case "paper":
-            console.log(playRound("Paper",computerChoice));
-            break;
-        case "scissors":
-            console.log(playRound("Scissors",computerChoice));
-            break;
+        });
     }
-});
-
-})
+)
 
 
 
