@@ -3,3 +3,8 @@ this exercise teaches about introductory concepts of javascript and programming 
 - Functions
 - Loops
 - Recursion
+# ---------------
+exercise updated to include a simple GUI, utilizing concepts such as:
+- DOM manipulation
+- event handlers
+- event listeners
