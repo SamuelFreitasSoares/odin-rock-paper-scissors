@@ -10,61 +10,50 @@ function getComputerChoice(){
     }
     
 }
-
-function getHumamChoice(){
-
-    let choice = parseInt(prompt("Please choose one: 1 - Rock | 2 - Paper | 3 - Scissors"));
-    return choice;
-
-}
-
 let humamScore = 0;
 let computerScore = 0;
 
 function playRound(humamChoice,computerChoice){
 
-    if (humamChoice === 1 && computerChoice === "Rock"){
-        return "It's a Tie!!";
-    } else if (humamChoice === 1 && computerChoice === "Paper"){
-        computerScore++;
-        return "You Lose! Paper beats Rock!";
-    } else if (humamChoice === 1 && computerChoice === "Scissors"){
-        humamScore++;
-        return "You Win! Rock beats Scissors!";
-    } else if (humamChoice === 2 && computerChoice === "Rock"){
-        humamScore++;
-        return "You Win! Paper beats Rock!";
-    } else if (humamChoice === 2 && computerChoice === "Paper"){
-        return "It's a Tie!!";
-    } else if (humamChoice === 2 && computerChoice === "Scissors"){
-        computerScore++;
-        return "You Lose! Scissors beats Paper!";
-    } else if (humamChoice === 3 && computerChoice === "Rock"){
-        computerScore++;
-        return "You Lose! Rock beats Scissors!";
-    } else if (humamChoice === 3 && computerChoice === "Paper"){
-        humamScore++;
-        return "You Win! Scissors beats Paper";
+    if(humamChoice === computerChoice){
+        return "It's a Tie!!"; 
+    } else if (
+        humamChoice === "Rock" && computerChoice === "Scissors" ||
+        humamChoice === "Paper" && computerChoice === "Rock" ||
+        humamChoice === "Scissors" && computerChoice === "Paper"
+    ){
+        return `You Win!! ${humamChoice} beats ${computerChoice}`;
     } else {
-        return "It's a Tie!!";
+        return `You Lost!! ${computerChoice} beats ${humamChoice}`;
     }
 
 }
 
-function playGame(){
-    for (let i = 0; i < 5; i++)
-    {
-        const humamChoice = getHumamChoice();
-        const computerChoice = getComputerChoice();
-        playRound(humamChoice, computerChoice);
-    }
 
-    if (humamScore > computerScore){
-        return "CONGRATULATIONS!!!";
-    }
-    else{
-        return "Better luck next time :(";
-    }
-}
+let loaded = document.addEventListener("DOMContentLoaded", (event) =>{
 
-console.log(playGame());
+    let btn = document.getElementById('buttons');
+let computerChoice = getComputerChoice();
+
+btn.addEventListener('click', (event) => {
+    let botao = event.target;
+    
+    switch(botao.id){
+        case "rock":
+            console.log(playRound("Rock",computerChoice));
+            break;
+        case "paper":
+            console.log(playRound("Paper",computerChoice));
+            break;
+        case "scissors":
+            console.log(playRound("Scissors",computerChoice));
+            break;
+    }
+});
+
+})
+
+
+
+
+
